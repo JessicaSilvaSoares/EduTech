@@ -1,0 +1,1522 @@
+{
+  "id": "0",
+  "name": "Diagrama EduTech",
+  "createdAt": "2025-10-14T22:49:35.775Z",
+  "updatedAt": "2025-10-14T22:58:35.506Z",
+  "databaseType": "postgresql",
+  "tables": [
+    {
+      "id": "1",
+      "name": "AULAS",
+      "schema": "DBO",
+      "x": -516.1273011495523,
+      "y": 460.63788480438996,
+      "fields": [
+        {
+          "id": "2",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "3",
+          "name": "TITULO",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "100",
+          "default": ""
+        },
+        {
+          "id": "4",
+          "name": "DURACAO",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "5",
+          "name": "ORDEM",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "6",
+          "name": "ID_TIPO",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "7",
+          "name": "ID_MODULO",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        }
+      ],
+      "indexes": [
+        {
+          "id": "8",
+          "name": "idx_AULAS_ID_TIPO",
+          "unique": false,
+          "fieldIds": [
+            "6"
+          ],
+          "createdAt": 1760297817090
+        },
+        {
+          "id": "9",
+          "name": "idx_AULAS_ID_MODULO",
+          "unique": false,
+          "fieldIds": [
+            "7"
+          ],
+          "createdAt": 1760297817090
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 9,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "10",
+      "name": "PROGRESSO_AULAS",
+      "schema": "DBO",
+      "x": -1668.8373198242086,
+      "y": 458.94679335112426,
+      "fields": [
+        {
+          "id": "11",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "12",
+          "name": "TEMPO_ASSISTIDO",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": "0"
+        },
+        {
+          "id": "13",
+          "name": "CONCLUIDA",
+          "type": {
+            "id": "boolean",
+            "name": "boolean"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": "FALSE"
+        },
+        {
+          "id": "14",
+          "name": "DATA_CONCLUSAO",
+          "type": {
+            "id": "date",
+            "name": "date"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "15",
+          "name": "ID_AULA",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "16",
+          "name": "ID_MATRICULA",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        }
+      ],
+      "indexes": [
+        {
+          "id": "17",
+          "name": "idx_PROGRESSO_AULAS_ID_AULA",
+          "unique": false,
+          "fieldIds": [
+            "15"
+          ],
+          "createdAt": 1760297817090
+        },
+        {
+          "id": "18",
+          "name": "idx_PROGRESSO_AULAS_ID_MATRICULA",
+          "unique": false,
+          "fieldIds": [
+            "16"
+          ],
+          "createdAt": 1760297817090
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 12,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "19",
+      "name": "ESPECIALIDADES",
+      "schema": "DBO",
+      "x": -1667.7362485901683,
+      "y": 1451.463018925333,
+      "fields": [
+        {
+          "id": "20",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817089,
+          "default": ""
+        },
+        {
+          "id": "21",
+          "name": "ESPECIALIDADE",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": true,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "characterMaximumLength": "50",
+          "default": ""
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817089,
+      "width": 337,
+      "order": 1,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "22",
+      "name": "CURSOS",
+      "schema": "DBO",
+      "x": -1029.305809347662,
+      "y": 963.3228391382723,
+      "fields": [
+        {
+          "id": "23",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "24",
+          "name": "TITULO",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "100",
+          "default": ""
+        },
+        {
+          "id": "25",
+          "name": "DESCRICAO",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "26",
+          "name": "PRECO",
+          "type": {
+            "id": "float",
+            "name": "float"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": "0"
+        },
+        {
+          "id": "27",
+          "name": "CARGA_HORARIA",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "28",
+          "name": "DATA_CADASTRO",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": "CURRENT_DATE()"
+        },
+        {
+          "id": "29",
+          "name": "ID_INSTRUTOR",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "30",
+          "name": "ID_CATEGORIA",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "31",
+          "name": "ID_NIVEL",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        }
+      ],
+      "indexes": [
+        {
+          "id": "32",
+          "name": "pk_CURSOS_ID",
+          "fieldIds": [
+            "23"
+          ],
+          "unique": true,
+          "isPrimaryKey": true,
+          "createdAt": 1760482193618
+        },
+        {
+          "id": "33",
+          "name": "idx_CURSOS_ID_NIVEL",
+          "unique": false,
+          "fieldIds": [
+            "31"
+          ],
+          "createdAt": 1760297817090
+        },
+        {
+          "id": "34",
+          "name": "idx_CURSOS_ID_INSTRUTOR",
+          "unique": false,
+          "fieldIds": [
+            "29"
+          ],
+          "createdAt": 1760297817090
+        },
+        {
+          "id": "35",
+          "name": "idx_CURSOS_ID_CATEGORIA",
+          "unique": false,
+          "fieldIds": [
+            "30"
+          ],
+          "createdAt": 1760297817090
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 6,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "36",
+      "name": "ALUNOS",
+      "schema": "DBO",
+      "x": -2204.066437973165,
+      "y": 593.3193288123751,
+      "fields": [
+        {
+          "id": "37",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817089,
+          "default": ""
+        },
+        {
+          "id": "38",
+          "name": "NOME",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "characterMaximumLength": "100",
+          "default": ""
+        },
+        {
+          "id": "39",
+          "name": "EMAIL",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": true,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "characterMaximumLength": "100",
+          "default": ""
+        },
+        {
+          "id": "40",
+          "name": "DATA_NASCIMENTO",
+          "type": {
+            "id": "date",
+            "name": "date"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "default": ""
+        },
+        {
+          "id": "41",
+          "name": "ATIVO",
+          "type": {
+            "id": "boolean",
+            "name": "boolean"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "default": "TRUE"
+        },
+        {
+          "id": "42",
+          "name": "DATA_CADASTRO",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "default": "CURRENT_DATE()"
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817089,
+      "width": 337,
+      "order": 0,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "43",
+      "name": "MATRICULAS",
+      "schema": "DBO",
+      "x": -1668.142999741704,
+      "y": 803.5585539616378,
+      "fields": [
+        {
+          "id": "44",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "45",
+          "name": "VALOR_PAGO",
+          "type": {
+            "id": "float",
+            "name": "float"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "46",
+          "name": "DATA_MATRICULA",
+          "type": {
+            "id": "date",
+            "name": "date"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "47",
+          "name": "DATA_CONCLUSAO",
+          "type": {
+            "id": "date",
+            "name": "date"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "48",
+          "name": "ID_ALUNO",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "49",
+          "name": "ID_CURSO",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "50",
+          "name": "ID_STATUS",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        }
+      ],
+      "indexes": [
+        {
+          "id": "51",
+          "name": "idx_MATRICULAS_ID_ALUNO",
+          "unique": false,
+          "fieldIds": [
+            "48"
+          ],
+          "createdAt": 1760297817090
+        },
+        {
+          "id": "52",
+          "name": "idx_MATRICULAS_ID_CURSO",
+          "unique": false,
+          "fieldIds": [
+            "49"
+          ],
+          "createdAt": 1760297817090
+        },
+        {
+          "id": "53",
+          "name": "idx_MATRICULAS_ID_STATUS",
+          "unique": false,
+          "fieldIds": [
+            "50"
+          ],
+          "createdAt": 1760297817090
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 11,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "54",
+      "name": "AULAS_TIPO",
+      "schema": "DBO",
+      "x": -456.4725130903789,
+      "y": 731.8568022649174,
+      "fields": [
+        {
+          "id": "55",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "56",
+          "name": "TIPO",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": true,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "20",
+          "default": ""
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "order": 8,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "57",
+      "name": "CATEGORIAS",
+      "schema": "DBO",
+      "x": -517.045537184708,
+      "y": 1339.4185465332787,
+      "fields": [
+        {
+          "id": "58",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "59",
+          "name": "NOME",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": true,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "50",
+          "default": ""
+        },
+        {
+          "id": "60",
+          "name": "DESCRICAO",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "200",
+          "default": ""
+        },
+        {
+          "id": "61",
+          "name": "DATA_CADASTRO",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": "CURRENT_DATE()"
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 4,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "62",
+      "name": "MODULOS",
+      "schema": "DBO",
+      "x": -517.4312410960132,
+      "y": 977.7618383437838,
+      "fields": [
+        {
+          "id": "63",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "64",
+          "name": "TITULO",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "50",
+          "default": ""
+        },
+        {
+          "id": "65",
+          "name": "DESCRICAO",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "66",
+          "name": "ORDEM",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "67",
+          "name": "ID_CURSO",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        }
+      ],
+      "indexes": [
+        {
+          "id": "68",
+          "name": "idx_MODULOS_ID_CURSO",
+          "unique": false,
+          "fieldIds": [
+            "67"
+          ],
+          "createdAt": 1760297817090
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 7,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "69",
+      "name": "AVALIACOES",
+      "schema": "DBO",
+      "x": -1028.7803425249533,
+      "y": 675.3245403762088,
+      "fields": [
+        {
+          "id": "70",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817091,
+          "default": ""
+        },
+        {
+          "id": "71",
+          "name": "NOTA",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817091,
+          "default": ""
+        },
+        {
+          "id": "72",
+          "name": "COMENTARIO",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817091,
+          "characterMaximumLength": "500",
+          "default": ""
+        },
+        {
+          "id": "73",
+          "name": "DATA_AVALIACAO",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817091,
+          "default": "CURRENT_DATE()"
+        },
+        {
+          "id": "74",
+          "name": "ID_MATRICULA",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817091,
+          "default": ""
+        },
+        {
+          "id": "75",
+          "name": "ID_CURSO",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817091,
+          "default": ""
+        }
+      ],
+      "indexes": [
+        {
+          "id": "76",
+          "name": "idx_AVALIACOES_ID_CURSO",
+          "unique": false,
+          "fieldIds": [
+            "75"
+          ],
+          "createdAt": 1760297817091
+        },
+        {
+          "id": "77",
+          "name": "idx_AVALIACOES_ID_MATRICULA",
+          "unique": false,
+          "fieldIds": [
+            "74"
+          ],
+          "createdAt": 1760297817091
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817091,
+      "width": 337,
+      "order": 13,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "78",
+      "name": "ESPECIALIDADES_INSTRUTORES",
+      "schema": "DBO",
+      "x": -2203.93233238274,
+      "y": 1289.0685904783518,
+      "fields": [
+        {
+          "id": "79",
+          "name": "ID_INSTRUTOR",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "80",
+          "name": "ID_ESPECIALIDADE",
+          "type": {
+            "id": "int",
+            "name": "int"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": ""
+        }
+      ],
+      "indexes": [
+        {
+          "id": "81",
+          "name": "idx_ESPECIALIDADES_INSTRUTORES_ID_ESPECIALIDADE",
+          "unique": false,
+          "fieldIds": [
+            "80"
+          ],
+          "createdAt": 1760297817090
+        },
+        {
+          "id": "82",
+          "name": "idx_ESPECIALIDADES_INSTRUTORES_ID_INSTRUTOR",
+          "unique": false,
+          "fieldIds": [
+            "79"
+          ],
+          "createdAt": 1760297817090
+        }
+      ],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 3,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "83",
+      "name": "MATRICULAS_STATUS",
+      "schema": "DBO",
+      "x": -2091.0415077951766,
+      "y": 995.844252725498,
+      "fields": [
+        {
+          "id": "84",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "85",
+          "name": "STATUS",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": true,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "20",
+          "default": ""
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 224,
+      "order": 10,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "86",
+      "name": "CURSOS_NIVEL",
+      "schema": "DBO",
+      "x": -1013.4387876582931,
+      "y": 1372.3014956873506,
+      "fields": [
+        {
+          "id": "87",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817090,
+          "default": ""
+        },
+        {
+          "id": "88",
+          "name": "NIVEL",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": true,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "characterMaximumLength": "20",
+          "default": ""
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "order": 5,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "89",
+      "name": "INSTRUTORES",
+      "schema": "DBO",
+      "x": -1669.1170512267145,
+      "y": 1155.5548090307796,
+      "fields": [
+        {
+          "id": "90",
+          "name": "ID",
+          "type": {
+            "id": "integer",
+            "name": "integer"
+          },
+          "primaryKey": true,
+          "unique": false,
+          "nullable": false,
+          "increment": true,
+          "createdAt": 1760297817089,
+          "default": ""
+        },
+        {
+          "id": "91",
+          "name": "NOME",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "characterMaximumLength": "100",
+          "default": ""
+        },
+        {
+          "id": "92",
+          "name": "EMAIL",
+          "type": {
+            "id": "varchar",
+            "name": "varchar"
+          },
+          "primaryKey": false,
+          "unique": true,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "characterMaximumLength": "100",
+          "default": ""
+        },
+        {
+          "id": "93",
+          "name": "BIOGRAFIA",
+          "type": {
+            "id": "text",
+            "name": "text"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": true,
+          "increment": false,
+          "createdAt": 1760297817089,
+          "default": ""
+        },
+        {
+          "id": "94",
+          "name": "ATIVO",
+          "type": {
+            "id": "boolean",
+            "name": "boolean"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": "TRUE"
+        },
+        {
+          "id": "95",
+          "name": "DATA_CADASTRO",
+          "type": {
+            "id": "timestamp",
+            "name": "timestamp"
+          },
+          "primaryKey": false,
+          "unique": false,
+          "nullable": false,
+          "increment": false,
+          "createdAt": 1760297817090,
+          "default": "CURRENT_DATE()"
+        }
+      ],
+      "indexes": [],
+      "color": "#8eb7ff",
+      "isView": false,
+      "createdAt": 1760297817090,
+      "width": 337,
+      "order": 2,
+      "diagramId": "zzf9k8k4rp90"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "96",
+      "name": "fk_AULAS_ID_MODULO_MODULOS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "1",
+      "targetSchema": "DBO",
+      "targetTableId": "62",
+      "sourceFieldId": "7",
+      "targetFieldId": "63",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "97",
+      "name": "fk_AULAS_ID_TIPO_AULAS_TIPO",
+      "sourceSchema": "DBO",
+      "sourceTableId": "1",
+      "targetSchema": "DBO",
+      "targetTableId": "54",
+      "sourceFieldId": "6",
+      "targetFieldId": "55",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "98",
+      "name": "fk_AVALIACOES_ID_CURSO_CURSOS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "69",
+      "targetSchema": "DBO",
+      "targetTableId": "22",
+      "sourceFieldId": "75",
+      "targetFieldId": "23",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "99",
+      "name": "fk_AVALIACOES_ID_MATRICULA_MATRICULAS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "69",
+      "targetSchema": "DBO",
+      "targetTableId": "43",
+      "sourceFieldId": "74",
+      "targetFieldId": "44",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "100",
+      "name": "fk_CURSOS_ID_CATEGORIA_CATEGORIAS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "22",
+      "targetSchema": "DBO",
+      "targetTableId": "57",
+      "sourceFieldId": "30",
+      "targetFieldId": "58",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "101",
+      "name": "fk_CURSOS_ID_INSTRUTOR_INSTRUTORES",
+      "sourceSchema": "DBO",
+      "sourceTableId": "22",
+      "targetSchema": "DBO",
+      "targetTableId": "89",
+      "sourceFieldId": "29",
+      "targetFieldId": "90",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "102",
+      "name": "fk_CURSOS_ID_NIVEL_NIVEIS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "22",
+      "targetSchema": "DBO",
+      "targetTableId": "86",
+      "sourceFieldId": "31",
+      "targetFieldId": "87",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "103",
+      "name": "fk_ESPECIALIDADES_INSTRUTORES_ID_ESPECIALIDADE_ESPECIALIDADES",
+      "sourceSchema": "DBO",
+      "sourceTableId": "78",
+      "targetSchema": "DBO",
+      "targetTableId": "19",
+      "sourceFieldId": "80",
+      "targetFieldId": "20",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "104",
+      "name": "fk_ESPECIALIDADES_INSTRUTORES_ID_INSTRUTOR_INSTRUTORES",
+      "sourceSchema": "DBO",
+      "sourceTableId": "78",
+      "targetSchema": "DBO",
+      "targetTableId": "89",
+      "sourceFieldId": "79",
+      "targetFieldId": "90",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "105",
+      "name": "fk_MATRICULAS_ID_ALUNO_ALUNOS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "43",
+      "targetSchema": "DBO",
+      "targetTableId": "36",
+      "sourceFieldId": "48",
+      "targetFieldId": "37",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "106",
+      "name": "fk_MATRICULAS_ID_CURSO_CURSOS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "43",
+      "targetSchema": "DBO",
+      "targetTableId": "22",
+      "sourceFieldId": "49",
+      "targetFieldId": "23",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "107",
+      "name": "fk_MATRICULAS_ID_STATUS_MATRICULAS_STATUS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "43",
+      "targetSchema": "DBO",
+      "targetTableId": "83",
+      "sourceFieldId": "50",
+      "targetFieldId": "84",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "108",
+      "name": "fk_MODULOS_ID_CURSO_CURSOS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "62",
+      "targetSchema": "DBO",
+      "targetTableId": "22",
+      "sourceFieldId": "67",
+      "targetFieldId": "23",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "109",
+      "name": "fk_PROGRESSO_AULAS_ID_AULA_AULAS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "10",
+      "targetSchema": "DBO",
+      "targetTableId": "1",
+      "sourceFieldId": "15",
+      "targetFieldId": "2",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    },
+    {
+      "id": "110",
+      "name": "fk_PROGRESSO_AULAS_ID_MATRICULA_MATRICULAS",
+      "sourceSchema": "DBO",
+      "sourceTableId": "10",
+      "targetSchema": "DBO",
+      "targetTableId": "43",
+      "sourceFieldId": "16",
+      "targetFieldId": "44",
+      "sourceCardinality": "many",
+      "targetCardinality": "one",
+      "createdAt": 1760297817091,
+      "diagramId": "zzf9k8k4rp90"
+    }
+  ],
+  "dependencies": [],
+  "areas": [],
+  "customTypes": []
+}
