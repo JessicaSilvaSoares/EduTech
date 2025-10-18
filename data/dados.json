@@ -1,0 +1,39 @@
+{
+    "aulas_tipo": [
+        { "id": 1, "tipo": "Vídeo Aula" },
+        { "id": 2, "tipo": "Material de Leitura" },
+        { "id": 3, "tipo": "Quiz" }
+    ],
+    "cursos_nivel": [
+        { "id": 1, "nivel": "Início" },
+        { "id": 2, "nivel": "Intermediário" },
+        { "id": 3, "nivel": "Avançado" }
+    ],
+    "categorias": [
+        { "id": 1, "nome": "Programação", "descricao": "Cursos focados em linguagens e frameworks de codificação." },
+        { "id": 2, "nome": "Dados", "descricao": "Cursos sobre análise, visualização e engenharia de dados." },
+        { "id": 3, "nome": "Infraestrutura", "descricao": "Cursos de redes, servidores e computação em nuvem." },
+        { "id": 4, "nome": "Design", "descricao": "Cursos de UI/UX, gráficos e produção multimídia." },
+        { "id": 5, "nome": "Cibersegurança", "descricao": "Cursos para proteção de sistemas e dados." }
+    ],
+    "matriculas_status": [
+        { "id": 1, "status": "Ativa" },
+        { "id": 2, "status": "Concluída" },
+        { "id": 3, "status": "Cancelada" }
+    ],
+    "especialidades": [
+        { "id": 1, "especialidade": "Desenvolvimento Web" },
+        { "id": 2, "especialidade": "DevOps" },
+        { "id": 3, "especialidade": "Cibersegurança" },
+        { "id": 4, "especialidade": "Inteligência Artificial" },
+        { "id": 5, "especialidade": "Desenvolvimento Mobile" },
+        { "id": 6, "especialidade": "Redes e Infraestrutura" },
+        { "id": 7, "especialidade": "Análise de Dados" },
+        { "id": 8, "especialidade": "UI/UX Design" },
+        { "id": 9, "especialidade": "Automação de Processos" },
+        { "id": 10, "especialidade": "Internet das Coisas (IoT)" },
+        { "id": 11, "especialidade": "Big Data" },
+        { "id": 12, "especialidade": "Administração de Banco de Dados" }
+    ]
+
+}
