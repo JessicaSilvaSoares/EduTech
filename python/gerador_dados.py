@@ -33,6 +33,7 @@ def gerar_alunos(quantidade: int):
 
 def gerar_instrutores(quantidade: int):
     instrutores = []
+    especialidades_instrutores = []
 
     for index in range(quantidade):
         nome = fake.first_name()
@@ -53,7 +54,18 @@ def gerar_instrutores(quantidade: int):
         }
         instrutores.append(instrutor)
 
-    return instrutores
+
+        qtd_especialidades = fake.random_int(min=1, max=3)
+
+        for _ in range(qtd_especialidades):
+            id_especialidade = buscar_id_aleatorio("especialidades")
+            instrutor_especialidade = {
+                "id_instrutor": instrutor["id"],
+                "id_especialidade": id_especialidade
+            }
+            especialidades_instrutores.append(instrutor_especialidade)
+
+    return instrutores, especialidades_instrutores
 
 
 def gerar_cursos(quantidade: int):
@@ -260,7 +272,10 @@ def exportar_para_csv():
     gerar_arquivos_estaticos()
 
     criar_arquivo_csv("alunos", gerar_alunos(30), ["id","nome","email","data_nascimento","ativo","data_cadastro"])
-    criar_arquivo_csv("instrutores", gerar_instrutores(10), ["id","nome","email","biografia","ativo","data_cadastro"])
+
+    instrutores, especialidades_instrutores = gerar_instrutores(10)
+    criar_arquivo_csv("instrutores", instrutores, ["id","nome","email","biografia","ativo","data_cadastro"])
+    criar_arquivo_csv("especialidades_instrutores", especialidades_instrutores, ["id_instrutor","id_especialidade"])
 
     cursos = gerar_cursos(20)
     criar_arquivo_csv("cursos", cursos, ["id","titulo","descricao","preco","carga_horaria","id_instrutor","id_categoria","id_nivel","data_cadastro"])
