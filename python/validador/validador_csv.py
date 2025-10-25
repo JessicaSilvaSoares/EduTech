@@ -337,7 +337,7 @@ def valida_avaliacoes():
 
     return erros
 
-def valida_csv():
+def validador_csv():
     erros = {}
 
     erros["alunos"] = valida_alunos()
@@ -369,3 +369,6 @@ def valida_csv():
     erros["avaliacoes"] = valida_avaliacoes()
 
     return erros
+
+if __name__ == "__main__":
+    valida_csv()
