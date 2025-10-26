@@ -156,17 +156,21 @@ def gerar_matriculas(quantidade: int):
     matriculas = []
 
     matriculas_status = ler_arquivo_csv("matriculas_status")
+    cursos = ler_arquivo_csv("cursos")
+
 
     for index in range(quantidade):
         id_aluno = buscar_id_aleatorio("alunos")
-        id_curso = buscar_id_aleatorio("cursos")
+        index_curso = fake.random_int(min=0, max=len(cursos)-1)
+        curso = cursos[index_curso]
         id_status = buscar_id_aleatorio("matriculas_status")
 
         matricula = {
             "id": index + 1,
             "id_aluno": id_aluno,
-            "id_curso": id_curso,
+            "id_curso": curso["id"],
             "id_status": id_status,
+            "valor_pago": curso["preco"],
             "data_matricula": fake.date_time_between_dates(
                 datetime_start=date(2023, 1, 1),
                 datetime_end=date(2025, 10, 15),
@@ -292,7 +296,7 @@ def exportar_para_csv():
         criar_arquivo_csv("aulas", aulas, ["id","titulo","descricao","duracao","ordem","id_modulo","id_tipo","data_cadastro"])
 
 
-    criar_arquivo_csv("matriculas", gerar_matriculas(80), ["id","id_aluno","id_curso","id_status","data_matricula","data_pagamento","data_conclusao"])
+    criar_arquivo_csv("matriculas", gerar_matriculas(80), ["id","id_aluno","id_curso","id_status","data_matricula","valor_pago","data_pagamento","data_conclusao"])
     criar_arquivo_csv("avaliacoes", gerar_avaliacoes(100), ["id","id_curso","id_matricula","nota","comentario","data_avaliacao"])
     criar_arquivo_csv("progresso_aulas", gerar_progresso_aulas(80), ["id","id_matricula","id_aula", "tempo_assistido","concluido","data_conclusao"])
 
