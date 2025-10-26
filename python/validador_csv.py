@@ -343,41 +343,73 @@ def valida_avaliacoes():
 def validador_csv():
     erros = {}
 
-    erros["alunos"] = valida_alunos()
+    erros_alunos = valida_alunos()
+    if len(erros_alunos) > 0:
+        erros["alunos"] = erros_alunos
 
-    erros["especialidades"] = valida_especialidades()
+    erros_especialidades = valida_especialidades()
+    if len(erros_especialidades) > 0:
+        erros["especialidades"] = erros_especialidades
 
-    erros["instrutores"] = valida_instrutores()
+    erros_instrutores = valida_instrutores()
+    if len(erros_instrutores) > 0:
+        erros["instrutores"] = erros_instrutores
 
-    erros["especialidades_instrutores"] = valida_especialidades_instrutores()
+    erros_especialidades_instrutores = valida_especialidades_instrutores()
+    if len(erros_especialidades_instrutores) > 0:
+        erros["especialidades_instrutores"] = erros_especialidades_instrutores
 
-    erros["categorias"] = valida_categorias()
+    erros_categorias = valida_categorias()
+    if len(erros_categorias) > 0:
+        erros["categorias"] = erros_categorias
 
-    erros["cursos_nivel"] = valida_cursos_nivel()
+    erros_cursos_nivel = valida_cursos_nivel()
+    if len(erros_cursos_nivel) > 0:
+        erros["cursos_nivel"] = erros_cursos_nivel
 
-    erros["cursos"] = valida_cursos()
+    erros_cursos = valida_cursos()
+    if len(erros_cursos) > 0:
+        erros["cursos"] = erros_cursos
 
-    erros["modulos"] = valida_modulos()
+    erros_modulos = valida_modulos()
+    if len(erros_modulos) > 0:
+        erros["modulos"] = erros_modulos
 
-    erros["aulas_tipo"] = valida_aulas_tipo()
+    erros_aulas_tipo = valida_aulas_tipo()
+    if len(erros_aulas_tipo) > 0:
+        erros["aulas_tipo"] = erros_aulas_tipo
 
-    erros["aulas"] = valida_aulas()
+    erros_aulas = valida_aulas()
+    if len(erros_aulas) > 0:
+        erros["aulas"] = erros_aulas
 
-    erros["matriculas_status"] = valida_matriculas_status()
+    erros_matriculas_status = valida_matriculas_status()
+    if len(erros_matriculas_status) > 0:
+        erros["matriculas_status"] = erros_matriculas_status
 
-    erros["matriculas"] = valida_matriculas()
+    erros_matriculas = valida_matriculas()
+    if len(erros_matriculas) > 0:
+        erros["matriculas"] = erros_matriculas
 
-    erros["progresso_aulas"] = valida_progresso_aulas()
+    erros_progresso_aulas = valida_progresso_aulas()
+    if len(erros_progresso_aulas) > 0:
+        erros["progresso_aulas"] = erros_progresso_aulas
 
-    erros["avaliacoes"] = valida_avaliacoes()
+    erros_avaliacoes = valida_avaliacoes()
+    if len(erros_avaliacoes) > 0:
+        erros["avaliacoes"] = erros_avaliacoes
 
     return erros
 
 
 def gera_relatorio_erros(erros):
-    arquivos_analisados = ["alunos","especialidades","instrutores","especialidades_instrutores","categorias","cursos_nivel","cursos","modulos","aulas_tipo","aulas","matriculas_status","matriculas","progresso_aulas","avaliacoes"]
+    arquivos_analisados = erros.keys()
 
-    with open("./data/relatorio_erros.md", mode="w", newline="", encoding="utf-8") as arquivo:
+    if len(arquivos_analisados) == 0:
+        print("Nenhum erro encontrado.\n")
+        return
+
+    with open("./relatorio_erros.md", mode="w", newline="", encoding="utf-8") as arquivo:
         write = arquivo.write
         write("# Relatório de Erros\n")
 
@@ -395,6 +427,8 @@ def gera_relatorio_erros(erros):
             for index, obj in enumerate(erros[arquivo]):
                 for erro in obj["erros"]:
                     write(f"| {erro['tipo']} | {index} | {erro['key']} | {obj['data'][erro['key']]} | \n")
+
+    print("Relatório de erros gerado em './relatorio_erros.md'.")
 
 
 if __name__ == "__main__":
