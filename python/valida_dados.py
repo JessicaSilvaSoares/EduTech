@@ -32,7 +32,7 @@ def valida_campos_datas(data, keys):
     erros = []
 
     for key in keys:
-        if not re.match(r"^\d{4}-\d{2}-\d{2}$", data[key]):
+        if len(data[key]) > 0 and not re.match(r"^\d{4}-\d{2}-\d{2}$", data[key]):
             erro = {
                 "tipo": "formato_data_invalido",
                 "key": key
