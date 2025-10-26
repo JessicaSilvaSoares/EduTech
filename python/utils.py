@@ -1,4 +1,5 @@
 import re
+import unicodedata
 from faker import Faker
 from csv import DictWriter, DictReader
 
@@ -116,6 +117,7 @@ def gerar_email(primeiro_nome: str, ultimo_nome: str) -> str:
     sobrenome_formatado = ultimo_nome.split(' ')[-1]
 
     nome_email = f"{nome_formatado}.{sobrenome_formatado}".lower()
+    nome_email = unicodedata.normalize('NFKD', nome_email).encode('ASCII', 'ignore').decode('ASCII')
     email = f"{nome_email}@{faker.free_email_domain()}"
 
     return email
