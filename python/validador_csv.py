@@ -1,4 +1,5 @@
-from python import utils
+from valida_dados import valida_dado
+from utils import ler_arquivo_csv
 
 def valida_alunos():
     obrigatorios = ["id", "nome", "email", "data_nascimento", "ativo"]
@@ -8,14 +9,14 @@ def valida_alunos():
     emails = ["email"]
     erros = []
 
-    alunos = utils.ler_arquivo_csv("alunos")
+    alunos = ler_arquivo_csv("alunos")
     for aluno in alunos:
         aluno_erro = {
             "data": aluno,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=aluno, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=inteiros, datas=datas)
+        erros_validacao = valida_dado(data=aluno, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=inteiros, datas=datas)
         if erros_validacao:
             aluno_erro["erros"].extend(erros_validacao)
             erros.append(aluno_erro)
@@ -29,14 +30,14 @@ def valida_especialidades():
     numeros = ["id"]
     erros = []
 
-    especialidades = utils.ler_arquivo_csv("especialidades")
+    especialidades = ler_arquivo_csv("especialidades")
     for especialidade in especialidades:
         especialidade_erro = {
             "data": especialidade,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=especialidade, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
+        erros_validacao = valida_dado(data=especialidade, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
         if erros_validacao:
             especialidade_erro["erros"].extend(erros_validacao)
             erros.append(especialidade_erro)
@@ -51,14 +52,14 @@ def valida_instrutores():
     emails = ["email"]
     erros = []
 
-    instrutores = utils.ler_arquivo_csv("instrutores")
+    instrutores = ler_arquivo_csv("instrutores")
     for instrutor in instrutores:
         instrutor_erro = {
             "data": instrutor,
             "erros": []
         }
         
-        erros_validacao = utils.valida_dado(data=instrutor, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
+        erros_validacao = valida_dado(data=instrutor, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
         if erros_validacao:
             instrutor_erro["erros"].extend(erros_validacao)
             erros.append(instrutor_erro)
@@ -75,14 +76,14 @@ def valida_especialidades_instrutores():
     }]
     erros = []
     
-    especialidades_instrutores = utils.ler_arquivo_csv("especialidades_instrutores")
+    especialidades_instrutores = ler_arquivo_csv("especialidades_instrutores")
     for especialidade_instrutor in especialidades_instrutores:
         especialidade_instrutor_erro = {
             "data": especialidade_instrutor,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=especialidade_instrutor, obrigatorios=obrigatorios, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(data=especialidade_instrutor, obrigatorios=obrigatorios, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             especialidade_instrutor_erro["erros"].extend(erros_validacao)
             erros.append(especialidade_instrutor_erro)
@@ -96,14 +97,14 @@ def valida_categorias():
     numeros = ["id"]
     erros = []
 
-    categorias = utils.ler_arquivo_csv("categorias")
+    categorias = ler_arquivo_csv("categorias")
     for categoria in categorias:
         categoria_erro = {
             "data": categoria,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=categoria, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
+        erros_validacao = valida_dado(data=categoria, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
         if erros_validacao:
             categoria_erro["erros"].extend(erros_validacao)
             erros.append(categoria_erro)
@@ -117,14 +118,14 @@ def valida_cursos_nivel():
     unicos = ["id", "nivel"]
     erros = []
 
-    cursos_nivel = utils.ler_arquivo_csv("cursos_nivel")
+    cursos_nivel = ler_arquivo_csv("cursos_nivel")
     for curso_nivel in cursos_nivel:
         curso_nivel_erro = {
             "data": curso_nivel,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=curso_nivel, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
+        erros_validacao = valida_dado(data=curso_nivel, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
         if erros_validacao:
             curso_nivel_erro["erros"].extend(erros_validacao)
             erros.append(curso_nivel_erro)
@@ -136,21 +137,21 @@ def valida_cursos():
     obrigatorios = ["id", "titulo", "descricao", "preco", "carga_horaria", "id_nivel"]
     unicos = ["id", "titulo"]
     numeros = ["id", "id_nivel"]
-    chaves_estrangeiras = [{
-        "key": "id_nivel", "tabela": "cursos_nivel",
-        "key": "id_instrutor", "tabela": "instrutores",
-        "key": "id_categoria", "tabela": "categorias",
-    }]
+    chaves_estrangeiras = [
+        {"key": "id_nivel", "tabela": "cursos_nivel"},
+        {"key": "id_instrutor", "tabela": "instrutores"},
+        {"key": "id_categoria", "tabela": "categorias"},
+    ]
     erros = []
 
-    cursos = utils.ler_arquivo_csv("cursos")
+    cursos = ler_arquivo_csv("cursos")
     for curso in cursos:
         curso_erro = {
             "data": curso,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=curso, obrigatorios=obrigatorios, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
+        erros_validacao = valida_dado(data=curso, obrigatorios=obrigatorios, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
         if erros_validacao:
             curso_erro["erros"].extend(erros_validacao)
             erros.append(curso_erro)
@@ -167,14 +168,14 @@ def valida_modulos():
     }]
     erros = []
 
-    modulos = utils.ler_arquivo_csv("modulos")
+    modulos = ler_arquivo_csv("modulos")
     for modulo in modulos:
         modulo_erro = {
             "data": modulo,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=modulo, obrigatorios=obrigatorios, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
+        erros_validacao = valida_dado(data=modulo, obrigatorios=obrigatorios, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
         if erros_validacao:
             modulo_erro["erros"].extend(erros_validacao)
             erros.append(modulo_erro)
@@ -188,14 +189,14 @@ def valida_aulas_tipo():
     unicos = ["id", "tipo"]
     erros = []
 
-    aulas_tipo = utils.ler_arquivo_csv("aulas_tipo")
+    aulas_tipo = ler_arquivo_csv("aulas_tipo")
     for aula_tipo in aulas_tipo:
         aula_tipo_erro = {
             "data": aula_tipo,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=aula_tipo, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
+        erros_validacao = valida_dado(data=aula_tipo, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
         if erros_validacao:
             aula_tipo_erro["erros"].extend(erros_validacao)
             erros.append(aula_tipo_erro)
@@ -214,14 +215,14 @@ def valida_aulas():
     }]
     erros = []
 
-    aulas = utils.ler_arquivo_csv("aulas")
+    aulas = ler_arquivo_csv("aulas")
     for aula in aulas:
         aula_erro = {
             "data": aula,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=aula, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(data=aula, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             aula_erro["erros"].extend(erros_validacao)
             erros.append(aula_erro)
@@ -235,14 +236,14 @@ def valida_matriculas_status():
     unicos = ["id", "status"]
     erros = []
 
-    matriculas_status = utils.ler_arquivo_csv("matriculas_status")
+    matriculas_status = ler_arquivo_csv("matriculas_status")
     for status in matriculas_status:
         matricula_erro = {
             "data": status,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=status, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
+        erros_validacao = valida_dado(data=status, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
         if erros_validacao:
             matricula_erro["erros"].extend(erros_validacao)
             erros.append(matricula_erro)
@@ -264,14 +265,14 @@ def valida_matriculas():
     }]
     erros = []
 
-    matriculas = utils.ler_arquivo_csv("matriculas")
+    matriculas = ler_arquivo_csv("matriculas")
     for matricula in matriculas:
         matricula_erro = {
             "data": matricula,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=matricula, obrigatorios=obrigatorios, numeros=numeros, datas=datas, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(data=matricula, obrigatorios=obrigatorios, numeros=numeros, datas=datas, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             matricula_erro["erros"].extend(erros_validacao)
             erros.append(matricula_erro)
@@ -290,14 +291,14 @@ def valida_progresso_aulas():
     }]
     erros = []
 
-    progresso_aulas = utils.ler_arquivo_csv("progresso_aulas")
+    progresso_aulas = ler_arquivo_csv("progresso_aulas")
     for progresso in progresso_aulas:
         progresso_erro = {
             "data": progresso,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=progresso, obrigatorios=obrigatorios, numeros=numeros, datas=datas, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(data=progresso, obrigatorios=obrigatorios, numeros=numeros, datas=datas, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             progresso_erro["erros"].extend(erros_validacao)
             erros.append(progresso_erro)
@@ -316,14 +317,15 @@ def valida_avaliacoes():
     }]
     erros = []
 
-    avaliacoes = utils.ler_arquivo_csv("avaliacoes")
+    avaliacoes = ler_arquivo_csv("avaliacoes")
     for avaliacao in avaliacoes:
         avaliacao_erro = {
             "data": avaliacao,
             "erros": []
         }
 
-        erros_validacao = utils.valida_dado(data=avaliacao, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(data=avaliacao, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+
         if not avaliacao["nota"] or not (1 <= int(avaliacao["nota"]) <= 5):
             erro_nota = {
                 "tipo": "constraint_intervalo_nota",
@@ -336,6 +338,7 @@ def valida_avaliacoes():
             erros.append(avaliacao_erro)
 
     return erros
+
 
 def validador_csv():
     erros = {}
@@ -370,5 +373,30 @@ def validador_csv():
 
     return erros
 
+
+def gera_relatorio_erros(erros):
+    arquivos_analisados = ["alunos","especialidades","instrutores","especialidades_instrutores","categorias","cursos_nivel","cursos","modulos","aulas_tipo","aulas","matriculas_status","matriculas","progresso_aulas","avaliacoes"]
+
+    with open("./data/relatorio_erros.md", mode="w", newline="", encoding="utf-8") as arquivo:
+        write = arquivo.write
+        write("# Relatório de Erros\n")
+
+        for arquivo in arquivos_analisados:
+            write(f"\n## Arquivo: {str(arquivo).upper()}\n")
+
+            if len(erros[arquivo]) == 0:
+                write("Nenhum erro encontrado.\n\n")
+                continue
+
+            write("### Erros Encontrados: \n\n")
+            write("| Tipo de Erro | Index Linha | Campo | Valor | \n")
+            write("| :-- | :-- | :-- | :-- | \n")
+
+            for index, obj in enumerate(erros[arquivo]):
+                for erro in obj["erros"]:
+                    write(f"| {erro['tipo']} | {index} | {erro['key']} | {obj['data'][erro['key']]} | \n")
+
+
 if __name__ == "__main__":
-    valida_csv()
+    erros = validador_csv()
+    gera_relatorio_erros(erros)

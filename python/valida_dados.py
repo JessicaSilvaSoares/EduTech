@@ -1,7 +1,6 @@
 import re
 
-from python import utils
-
+from utils import ler_arquivo_csv, validar_email
 
 def valida_campos_obrigatorios(data, keys):
     erros = []
@@ -19,7 +18,9 @@ def valida_campos_inteiros(data, keys):
     erros = []
 
     for key in keys:
-        if type(data[key]) is not int:
+        try:
+            int(data[key])
+        except (ValueError, TypeError):
             erro = {
                 "tipo": "campo_inteiro",
                 "key": key
@@ -43,8 +44,9 @@ def valida_campos_unicos(lista, data, keys):
     erros = []
 
     for key in keys:
-        values = [item[key] for item in lista]
-        if data[key] and data[key] not in values:
+        values = [item[key] for item in lista if item[key] == data[key]]
+
+        if data[key] and len(values) > 0:
             erro = {
                 "tipo": "campo_unico",
                 "key": key
@@ -59,7 +61,7 @@ def valida_campos_chaves_estrangeiras(data, chaves_estrangeiras):
         tabela = chave["tabela"]
         key = chave["key"]
 
-        registros = utils.ler_arquivo_csv(tabela)
+        registros = ler_arquivo_csv(tabela)
         valores_tabela = [registro["id"] for registro in registros]
 
         if data[key] and data[key] not in valores_tabela:
@@ -75,7 +77,7 @@ def valida_campos_datetimes(data, keys):
     erros = []
 
     for key in keys:
-        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$", data[key]):
+        if len(data[key]) > 0 and not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$", data[key]):
             erro = {
                 "tipo": "formato_datetime_invalido",
                 "key": key
@@ -88,7 +90,7 @@ def valida_campos_emails(data, keys):
     erros = []
 
     for key in keys:
-        if not utils.validar_email(data[key]):
+        if not validar_email(data[key]):
             erro = {
                 "tipo": "formato_email_invalido",
                 "key": key
