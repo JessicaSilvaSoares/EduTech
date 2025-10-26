@@ -119,7 +119,7 @@ def gerar_aulas(curso_id: int, quantidade: int):
         
         modulo = {
             "id": modulo_index + 1,
-            "titulo": fake.sentence(nb_words=4),
+            "titulo": fake.sentence(max_nb_words=4, max_nb_chars=50),
             "descricao": fake.text(max_nb_chars=200),
             "id_curso": curso_id,
             "ordem": index + 1
@@ -133,7 +133,6 @@ def gerar_aulas(curso_id: int, quantidade: int):
         aula = {
             "id": aula_index + 1,
             "titulo": fake.sentence(nb_words=6),
-            "descricao": fake.text(max_nb_chars=200),
             "duracao": fake.random_int(min=30, max=120), # duracao em minutos
             "ordem": ordem_modulo_aula + 1,
             "id_modulo": modulo["id"],
@@ -252,11 +251,11 @@ def gerar_progresso_aulas(quantidade: int):
             "id_matricula": matricula["id"],
             "id_aula": aula_escolhida["id"],
             "tempo_assistido": fake.random_int(min=0, max=int(aula_escolhida["duracao"])),
-            "concluido": fake.boolean(chance_of_getting_true=45),
+            "concluida": fake.boolean(chance_of_getting_true=45),
             "data_conclusao": None
         }
 
-        if progresso["concluido"]:
+        if progresso["concluida"]:
             progresso["tempo_assistido"] = int(aula_escolhida["duracao"])
             progresso["data_conclusao"] = fake.date_time_between_dates(
                 datetime_start=datetime.strptime(matricula["data_matricula"], "%Y-%m-%dT%H:%M:%S"),
