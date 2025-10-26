@@ -1,5 +1,5 @@
 from faker import Faker
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from utils import criar_arquivo_csv, ler_arquivo_csv, buscar_id_aleatorio, gerar_email
 from json import load
 
@@ -174,6 +174,12 @@ def gerar_matriculas(quantidade: int):
             ).strftime("%Y-%m-%dT%H:%M:%S"),
         }
 
+        matricula["data_pagamento"] = fake.date_time_between_dates(
+            datetime_start=datetime.strptime(matricula["data_matricula"], "%Y-%m-%dT%H:%M:%S"),
+            datetime_end=datetime.strptime(matricula["data_matricula"], "%Y-%m-%dT%H:%M:%S") + timedelta(days=10),
+            tzinfo=None
+        ).strftime("%Y-%m-%dT%H:%M:%S")
+
         if fake.boolean(chance_of_getting_true=50):
             matricula["data_conclusao"] = fake.date_time_between_dates(
                 datetime_start=datetime.strptime(matricula["data_matricula"], "%Y-%m-%dT%H:%M:%S"),
@@ -286,7 +292,7 @@ def exportar_para_csv():
         criar_arquivo_csv("aulas", aulas, ["id","titulo","descricao","duracao","ordem","id_modulo","id_tipo","data_cadastro"])
 
 
-    criar_arquivo_csv("matriculas", gerar_matriculas(80), ["id","id_aluno","id_curso","id_status","data_matricula","data_conclusao"])
+    criar_arquivo_csv("matriculas", gerar_matriculas(80), ["id","id_aluno","id_curso","id_status","data_matricula","data_pagamento","data_conclusao"])
     criar_arquivo_csv("avaliacoes", gerar_avaliacoes(100), ["id","id_curso","id_matricula","nota","comentario","data_avaliacao"])
     criar_arquivo_csv("progresso_aulas", gerar_progresso_aulas(80), ["id","id_matricula","id_aula", "tempo_assistido","concluido","data_conclusao"])
 
