@@ -284,20 +284,20 @@ def exportar_para_csv():
 
     instrutores, especialidades_instrutores = gerar_instrutores(10)
     criar_arquivo_csv("instrutores", instrutores, ["id","nome","email","biografia","ativo","data_cadastro"])
-    criar_arquivo_csv("especialidades_instrutores", especialidades_instrutores, ["id_instrutor","id_especialidade"])
+    criar_arquivo_csv("especialidades_instrutores", especialidades_instrutores, ["id_especialidade","id_instrutor"])
 
     cursos = gerar_cursos(20)
-    criar_arquivo_csv("cursos", cursos, ["id","titulo","descricao","preco","carga_horaria","id_instrutor","id_categoria","id_nivel","data_cadastro"])
+    criar_arquivo_csv("cursos", cursos, ["id","titulo","descricao","preco","carga_horaria","data_cadastro","id_nivel","id_instrutor","id_categoria"])
 
     for curso in cursos:
         modulos, aulas = gerar_aulas(curso["id"], fake.random_int(min=2, max=10))
-        criar_arquivo_csv("modulos", modulos, ["id","titulo","descricao","id_curso","ordem"])
-        criar_arquivo_csv("aulas", aulas, ["id","titulo","descricao","duracao","ordem","id_modulo","id_tipo","data_cadastro"])
+        criar_arquivo_csv("modulos", modulos, ["id","titulo","descricao","ordem","id_curso"])
+        criar_arquivo_csv("aulas", aulas, ["id","titulo","duracao","ordem","data_cadastro","id_tipo","id_modulo"])
 
 
-    criar_arquivo_csv("matriculas", gerar_matriculas(80), ["id","id_aluno","id_curso","id_status","data_matricula","valor_pago","data_pagamento","data_conclusao"])
-    criar_arquivo_csv("avaliacoes", gerar_avaliacoes(100), ["id","id_curso","id_matricula","nota","comentario","data_avaliacao"])
-    criar_arquivo_csv("progresso_aulas", gerar_progresso_aulas(80), ["id","id_matricula","id_aula", "tempo_assistido","concluido","data_conclusao"])
+    criar_arquivo_csv("matriculas", gerar_matriculas(80), ["id","valor_pago","data_matricula","data_pagamento","data_conclusao","id_aluno","id_curso","id_status"])
+    criar_arquivo_csv("avaliacoes", gerar_avaliacoes(100), ["id","nota","comentario","data_avaliacao","id_curso","id_matricula"])
+    criar_arquivo_csv("progresso_aulas", gerar_progresso_aulas(80), ["id","tempo_assistido","concluida","data_conclusao","id_aula","id_matricula"])
 
 
 if __name__ == "__main__":
