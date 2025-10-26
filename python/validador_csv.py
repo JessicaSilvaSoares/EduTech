@@ -254,7 +254,7 @@ def valida_matriculas_status():
 def valida_matriculas():
     obrigatorios = ["id", "valor_pago", "data_matricula", "id_aluno", "id_curso", "id_status"]
     numeros = ["id", "id_aluno", "id_curso", "id_status"]
-    datas = ["data_matricula", "data_pagamento"]
+    datetimes = ["data_matricula", "data_pagamento"]
     unicos = ["id"]
     chaves_estrangeiras = [{
         "key": "id_aluno", "tabela": "alunos"
@@ -272,7 +272,7 @@ def valida_matriculas():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=matricula, obrigatorios=obrigatorios, numeros=numeros, datas=datas, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(data=matricula, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             matricula_erro["erros"].extend(erros_validacao)
             erros.append(matricula_erro)
@@ -280,9 +280,9 @@ def valida_matriculas():
 
 
 def valida_progresso_aulas():
-    obrigatorios = ["id", "tempo_assistido", "concluido", "id_aula", "id_matricula"]
+    obrigatorios = ["id", "tempo_assistido", "concluida", "id_aula", "id_matricula"]
     numeros = ["id", "id_aula", "id_matricula"]
-    datas = ["data_conclusao"]
+    datetimes = ["data_conclusao"]
     unicos = ["id"]
     chaves_estrangeiras = [{
         "key": "id_aula", "tabela": "aulas"
@@ -298,7 +298,7 @@ def valida_progresso_aulas():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=progresso, obrigatorios=obrigatorios, numeros=numeros, datas=datas, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(data=progresso, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             progresso_erro["erros"].extend(erros_validacao)
             erros.append(progresso_erro)
