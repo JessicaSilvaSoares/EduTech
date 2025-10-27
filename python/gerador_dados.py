@@ -44,7 +44,7 @@ def gerar_instrutores(quantidade: int):
             "id": index + 1,
             "nome": f"{nome} {sobrenome}",
             "email": email,
-            "biografia": fake.text(max_nb_chars=200),
+            "biografia": fake.text(max_nb_chars=100),
             "ativo": fake.boolean(chance_of_getting_true=95),
             "data_cadastro": fake.date_time_between_dates(
                 datetime_start=date(2023, 1, 1),
@@ -131,7 +131,7 @@ def gerar_aulas(curso_id: int, quantidade: int):
         
         modulo = {
             "id": modulo_index + 1,
-            "titulo": fake.text(max_nb_chars=50),
+            "titulo": fake.sentence(nb_words=4),
             "descricao": fake.text(max_nb_chars=200),
             "id_curso": curso_id,
             "ordem": index + 1
@@ -256,7 +256,7 @@ def gerar_avaliacoes(quantidade: int):
             "id_curso": id_curso,
             "id_matricula": id_matricula,
             "nota": fake.random_int(min=1, max=5),
-            "comentario": fake.text(max_nb_chars=500),
+            "comentario": fake.text(max_nb_chars=200),
             "data_avaliacao": fake.date_time_between_dates(
                 datetime_start=date(2023, 1, 1),
                 datetime_end=date(2025, 10, 15),
