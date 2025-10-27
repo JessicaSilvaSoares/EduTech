@@ -1,88 +1,130 @@
-# EduTech - Sistema de Gerenciamento de Cursos Online
+# Projeto EduTech: Plataforma de Gerenciamento de Cursos
 
-Este projeto consiste em um sistema de gerenciamento para uma plataforma de cursos online (EduTech), com um forte foco em modelagem de banco de dados com SQL/PostgreSQL e o uso de Python como ferramenta auxiliar para geração de dados e validações.
+##  Índice
+
+- [Projeto EduTech: Plataforma de Gerenciamento de Cursos](#projeto-edutech-plataforma-de-gerenciamento-de-cursos)
+  - [Índice](#índice)
+  - [Visão Geral](#visão-geral)
+  - [Modelagem do Banco de Dados](#modelagem-do-banco-de-dados)
+  - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+  - [Estrutura do Projeto](#estrutura-do-projeto)
+  - [Fluxo de Execução](#fluxo-de-execução)
+  - [Como Configurar e Executar o Projeto](#como-configurar-e-executar-o-projeto)
+    - [1. Pré-requisitos](#1-pré-requisitos)
+    - [2. Configuração do Ambiente](#2-configuração-do-ambiente)
+    - [3. Execução Passo a Passo](#3-execução-passo-a-passo)
+
+---
+
+## Visão Geral
+
+O projeto EduTech simula o backend de uma plataforma de cursos online. O objetivo principal é demonstrar a criação de um banco de dados relacional robusto com PostgreSQL, a automação de tarefas com scripts Python e a orquestração do ambiente de desenvolvimento utilizando Docker.
+
+O sistema gerencia entidades como alunos, instrutores, cursos, matrículas e progresso, formando a base para uma aplicação de e-learning funcional.
+
+## Modelagem do Banco de Dados
+
+A estrutura do banco de dados foi projetada para garantir a integridade e a consistência dos dados. As principais entidades incluem:
+
+-   **Alunos:** Gerencia as informações dos usuários que consomem o conteúdo.
+-   **Instrutores:** Armazena dados dos responsáveis pela criação dos cursos.
+-   **Cursos:** Contém os detalhes de cada curso oferecido.
+-   **Módulos e Aulas:** Estruturam o conteúdo de cada curso.
+-   **Matrículas e Progresso:** Rastreiam a inscrição e o avanço dos alunos nos cursos.
+
+O Diagrama Entidade-Relacionamento (ER) detalhado pode ser encontrado em `docs/diagrama_er.png`.
 
 ## Tecnologias Utilizadas
 
-- **Banco de Dados:** PostgreSQL
-- **Linguagem de Script:** Python 3.x
-- **Containerização:** Docker
-- **Dependências Python:** Faker (para geração de dados fictícios)
+-   **Banco de Dados:** PostgreSQL
+-   **Linguagem de Script:** Python 3.x
+-   **Containerização:** Docker & Docker Compose
+-   **Bibliotecas Python:**
+    -   `Faker`: Geração de dados fictícios (mock).
 
-## Estrutura de Pastas
+## Estrutura do Projeto
 
 ```
 .
-├── data/              # Armazena os arquivos .csv gerados pelo Python
-├── docs/              # Contém a documentação, como o diagrama ER
-├── python/            # Scripts Python para geração de dados, validação e relatórios
-|   ├── validador/
-│   ├── gerador_dados.py
-│   ├── main.py
-│   └── utils.py
-└── sql/               # Scripts SQL para criação do schema, inserção de dados e consultas
+├── data/              # Armazena os arquivos .csv gerados para carga de dados.
+├── docs/              # Contém a documentação (ex: Diagrama ER).
+├── python/            # Scripts Python para automação.
+│   ├── gerador_dados.py # Gera dados fictícios e salva em .csv.
+│   ├── main.py          # Orquestra a carga dos dados .csv para o banco.
+│   └── utils.py         # Funções utilitárias (ex: conexão com o BD).
+├── sql/               # Scripts SQL.
+│   └── schema.sql       # Define a estrutura completa do banco de dados (DDL).
+├── .env               # Arquivo de configuração de variáveis de ambiente (local).
+├── docker-compose.yml # Define o serviço do banco de dados PostgreSQL.
+└── requirements.txt   # Lista de dependências Python.
 ```
 
-## Como Executar
+## Fluxo de Execução
 
-Siga os passos abaixo para configurar e executar o projeto em seu ambiente local.
+1.  **Ambiente:** O `docker-compose` inicializa um container com o PostgreSQL.
+2.  **Criação do Schema:** O script `sql/schema.sql` é executado para criar todas as tabelas, tipos e relacionamentos no banco de dados.
+3.  **Geração de Dados:** O script `python/gerador_dados.py` cria dados fictícios e os armazena em arquivos `.csv` no diretório `data/`.
+4.  **Carga de Dados:** O script `python/main.py` lê os arquivos `.csv` e insere os dados em massa nas tabelas correspondentes do PostgreSQL.
+
+## Como Configurar e Executar o Projeto
 
 ### 1. Pré-requisitos
 
-- [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/install/) instalados.
-- [Python 3.x](https://www.python.org/downloads/) instalado.
+-   [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/install/) instalados.
+-   [Python 3.x](https://www.python.org/downloads/) instalado.
+-   [Git](https://git-scm.com/) instalado.
 
-### 2. Clonar o Repositório
+### 2. Configuração do Ambiente
 
+**a. Clone o Repositório**
 ```sh
 git clone https://github.com/JessicaSilvaSoares/EduTech
 cd EduTech
 ```
 
-### 3. Configurar Variáveis de Ambiente
+**b. Crie o Arquivo de Ambiente**
 
-Crie um arquivo chamado `.env` na raiz do projeto com o seguinte conteúdo. Substitua os valores de exemplo pelas credenciais definidas no seu arquivo `docker-compose.yml`.
+Crie um arquivo `.env` na raiz do projeto e preencha com as credenciais do banco de dados. Estes valores devem ser os mesmos definidos em `docker-compose.yml`.
 
 ```env
-# Exemplo de configuração para o banco de dados PostgreSQL
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=admin
-POSTGRES_DB=edutech
-POSTGRES_HOST=localhost
-POSTGRES_DRIVER=PostgreSQL Unicode
+# .env
+POSTGRES_USER=
+PGPASSWORD=
+POSTGRES_PORT=
 ```
 
-### 4. Iniciar o Banco de Dados com Docker
+### 3. Execução Passo a Passo
 
-Execute o comando abaixo para iniciar o container do PostgreSQL em segundo plano.
+**a. Crie o ambiente para execução dos scripts**
+
+Este comando irá criar e iniciar o container do PostgreSQL em segundo plano e criar o ambiente virtual.
 
 ```sh
-docker-compose up -d
+make run
 ```
 
-### 5. Instalar Dependências Python
+**b. Gere os Dados Fictícios**
 
-Crie um ambiente virtual e instale as dependências listadas no `requirements.txt`.
+Este comando irá popular a pasta `data/` com arquivos `.csv`.
 
 ```sh
-# Criar e ativar ambiente virtual (Opcional, mas recomendado)
-python -m venv .venv
-source .venv/bin/activate  # No Windows: venv\Scripts\activate
-
-# Instalar dependências
-pip install -r requirements.txt
+make gerar-dados
 ```
 
-### 6. Criar o Schema do Banco de Dados
+**c. Valide os Dados**
 
-1.  Conecte-se ao banco de dados PostgreSQL usando sua IDE SQL (DBeaver, pgAdmin, etc.). As credenciais de conexão podem ser encontradas no seu arquivo `docker-compose.yml`.
-2.  Abra o arquivo `sql/schema.sql`.
-3.  Execute o script completo para criar todas as tabelas e seus relacionamentos.
-
-### 7. Gerar Dados Fictícios
-
-Execute o script Python para gerar os dados e exportá-los para arquivos CSV na pasta `data`.
+Este comando irá validar os arquivos `.csv` da pasta `data/`.
 
 ```sh
-python python/gerador_dados.py
+make validar-dados
 ```
+
+**d. Carregue os Dados no Banco**
+
+Execute o script principal para inserir os dados dos arquivos `.csv` nas tabelas do PostgreSQL.
+
+```sh
+make importar-dados
+```
+
+Ao final desses passos, o banco de dados estará totalmente configurado, estruturado e populado, pronto para ser consultado.
