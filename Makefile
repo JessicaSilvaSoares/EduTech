@@ -68,7 +68,7 @@ clean:
 	@ rm -f data/*.csv relatorio_erros.md
 
 # LIMPA TODO O AMBIENTE CRIADO
-fclean: remove_schema deactivate clean
+fclean: remover-schema deactivate clean
 	@ docker compose down --volumes --remove-orphans
 	@ rm -f data/*.csv relatorio_erros.md
 
