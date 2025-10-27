@@ -119,7 +119,7 @@ def gerar_aulas(curso_id: int, quantidade: int):
         
         modulo = {
             "id": modulo_index + 1,
-            "titulo": fake.sentence(max_nb_words=4, max_nb_chars=50),
+            "titulo": fake.text(max_nb_chars=50),
             "descricao": fake.text(max_nb_chars=200),
             "id_curso": curso_id,
             "ordem": index + 1
