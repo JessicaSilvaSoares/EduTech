@@ -16,7 +16,7 @@ def valida_alunos():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=aluno, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=inteiros, datas=datas)
+        erros_validacao = valida_dado(lista_existente=alunos, data=aluno, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=inteiros, datas=datas)
         if erros_validacao:
             aluno_erro["erros"].extend(erros_validacao)
             erros.append(aluno_erro)
@@ -37,7 +37,7 @@ def valida_especialidades():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=especialidade, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
+        erros_validacao = valida_dado(lista_existente=especialidades, data=especialidade, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
         if erros_validacao:
             especialidade_erro["erros"].extend(erros_validacao)
             erros.append(especialidade_erro)
@@ -58,8 +58,8 @@ def valida_instrutores():
             "data": instrutor,
             "erros": []
         }
-        
-        erros_validacao = valida_dado(data=instrutor, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
+
+        erros_validacao = valida_dado(lista_existente=instrutores, data=instrutor, emails=emails, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
         if erros_validacao:
             instrutor_erro["erros"].extend(erros_validacao)
             erros.append(instrutor_erro)
@@ -69,6 +69,7 @@ def valida_instrutores():
 
 def valida_especialidades_instrutores():
     obrigatorios = ["id_instrutor", "id_especialidade"]
+    unicos_compostos = [["id_instrutor", "id_especialidade"]]
     chaves_estrangeiras = [{
         "key": "id_instrutor", "tabela": "instrutores"
     }, {
@@ -83,7 +84,7 @@ def valida_especialidades_instrutores():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=especialidade_instrutor, obrigatorios=obrigatorios, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(lista_existente=especialidades_instrutores, data=especialidade_instrutor, obrigatorios=obrigatorios, unicos_compostos=unicos_compostos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             especialidade_instrutor_erro["erros"].extend(erros_validacao)
             erros.append(especialidade_instrutor_erro)
@@ -104,7 +105,7 @@ def valida_categorias():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=categoria, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
+        erros_validacao = valida_dado(lista_existente=categorias, data=categoria, obrigatorios=obrigatorios, unicos=unicos, numeros=numeros)
         if erros_validacao:
             categoria_erro["erros"].extend(erros_validacao)
             erros.append(categoria_erro)
@@ -125,7 +126,7 @@ def valida_cursos_nivel():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=curso_nivel, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
+        erros_validacao = valida_dado(lista_existente=cursos_nivel, data=curso_nivel, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
         if erros_validacao:
             curso_nivel_erro["erros"].extend(erros_validacao)
             erros.append(curso_nivel_erro)
@@ -151,7 +152,7 @@ def valida_cursos():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=curso, obrigatorios=obrigatorios, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
+        erros_validacao = valida_dado(lista_existente=cursos, data=curso, obrigatorios=obrigatorios, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
         if erros_validacao:
             curso_erro["erros"].extend(erros_validacao)
             erros.append(curso_erro)
@@ -162,6 +163,7 @@ def valida_cursos():
 def valida_modulos():
     obrigatorios = ["id", "titulo", "ordem", "id_curso"]
     unicos = ["id", "titulo"]
+    unicos_compostos = [["id_curso", "ordem"]]
     numeros = ["id", "id_curso", "ordem"]
     chaves_estrangeiras = [{
         "key": "id_curso", "tabela": "cursos"
@@ -175,7 +177,7 @@ def valida_modulos():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=modulo, obrigatorios=obrigatorios, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
+        erros_validacao = valida_dado(lista_existente=modulos, data=modulo, obrigatorios=obrigatorios, unicos_compostos=unicos_compostos, numeros=numeros, chaves_estrangeiras=chaves_estrangeiras, unicos=unicos)
         if erros_validacao:
             modulo_erro["erros"].extend(erros_validacao)
             erros.append(modulo_erro)
@@ -196,7 +198,7 @@ def valida_aulas_tipo():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=aula_tipo, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
+        erros_validacao = valida_dado(lista_existente=aulas_tipo, data=aula_tipo, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
         if erros_validacao:
             aula_tipo_erro["erros"].extend(erros_validacao)
             erros.append(aula_tipo_erro)
@@ -208,6 +210,7 @@ def valida_aulas():
     obrigatorios = ["id", "titulo", "duracao", "id_tipo", "id_modulo"]
     numeros = ["id", "duracao", "id_tipo", "id_modulo"]
     unicos = ["id", "titulo"]
+    unicos_compostos = [["id_modulo", "ordem"]]
     chaves_estrangeiras = [{
         "key": "id_tipo", "tabela": "aulas_tipo"
     }, {
@@ -222,7 +225,7 @@ def valida_aulas():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=aula, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(lista_existente=aulas, data=aula, obrigatorios=obrigatorios, unicos_compostos=unicos_compostos, numeros=numeros, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             aula_erro["erros"].extend(erros_validacao)
             erros.append(aula_erro)
@@ -243,7 +246,7 @@ def valida_matriculas_status():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=status, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
+        erros_validacao = valida_dado(lista_existente=matriculas_status, data=status, obrigatorios=obrigatorios, numeros=numeros, unicos=unicos)
         if erros_validacao:
             matricula_erro["erros"].extend(erros_validacao)
             erros.append(matricula_erro)
@@ -256,6 +259,7 @@ def valida_matriculas():
     numeros = ["id", "id_aluno", "id_curso", "id_status"]
     datetimes = ["data_matricula", "data_pagamento"]
     unicos = ["id"]
+    unicos_compostos = [["id_aluno", "id_curso", "id_status"]]
     chaves_estrangeiras = [{
         "key": "id_aluno", "tabela": "alunos"
     }, {
@@ -272,7 +276,7 @@ def valida_matriculas():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=matricula, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(lista_existente=matriculas, data=matricula, obrigatorios=obrigatorios, unicos_compostos=unicos_compostos, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             matricula_erro["erros"].extend(erros_validacao)
             erros.append(matricula_erro)
@@ -284,6 +288,7 @@ def valida_progresso_aulas():
     numeros = ["id", "id_aula", "id_matricula"]
     datetimes = ["data_conclusao"]
     unicos = ["id"]
+    unicos_compostos = [["id_aula", "id_matricula"]]
     chaves_estrangeiras = [{
         "key": "id_aula", "tabela": "aulas"
     }, {
@@ -298,7 +303,7 @@ def valida_progresso_aulas():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=progresso, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(lista_existente=progresso_aulas, data=progresso, obrigatorios=obrigatorios, unicos_compostos=unicos_compostos, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
         if erros_validacao:
             progresso_erro["erros"].extend(erros_validacao)
             erros.append(progresso_erro)
@@ -324,7 +329,7 @@ def valida_avaliacoes():
             "erros": []
         }
 
-        erros_validacao = valida_dado(data=avaliacao, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
+        erros_validacao = valida_dado(lista_existente=avaliacoes, data=avaliacao, obrigatorios=obrigatorios, numeros=numeros, datetimes=datetimes, unicos=unicos, chaves_estrangeiras=chaves_estrangeiras)
 
         if not avaliacao["nota"] or not (1 <= int(avaliacao["nota"]) <= 5):
             erro_nota = {
@@ -426,7 +431,10 @@ def gera_relatorio_erros(erros):
 
             for index, obj in enumerate(erros[arquivo]):
                 for erro in obj["erros"]:
-                    write(f"| {erro['tipo']} | {index} | {erro['key']} | {obj['data'][erro['key']]} | \n")
+                    if erro.get("key"):
+                        write(f"| {erro['tipo']} | {index} | {erro['key']} | {obj['data'][erro['key']]} | \n")
+                    elif erro.get("keys"):
+                        write(f"| {erro['tipo']} | {index} | {', '.join(erro['keys'])} | {', '.join(obj['data'][key] for key in erro['keys'])} | \n")
 
     print("Relatório de erros gerado em './relatorio_erros.md'.")
 
