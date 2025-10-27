@@ -426,15 +426,15 @@ def gera_relatorio_erros(erros):
                 continue
 
             write("### Erros Encontrados: \n\n")
-            write("| Tipo de Erro | Index Linha | Campo | Valor | \n")
-            write("| :-- | :-- | :-- | :-- | \n")
+            write("| Tipo de Erro | Campo(s) | Valor(es) | \n")
+            write("| :-- | :-- | :-- | \n")
 
-            for index, obj in enumerate(erros[arquivo]):
+            for obj in erros[arquivo]:
                 for erro in obj["erros"]:
                     if erro.get("key"):
-                        write(f"| {erro['tipo']} | {index} | {erro['key']} | {obj['data'][erro['key']]} | \n")
+                        write(f"| {erro['tipo']} | {erro['key']} | {obj['data'][erro['key']]} | \n")
                     elif erro.get("keys"):
-                        write(f"| {erro['tipo']} | {index} | {', '.join(erro['keys'])} | {', '.join(obj['data'][key] for key in erro['keys'])} | \n")
+                        write(f"| {erro['tipo']} | {', '.join(erro['keys'])} | {', '.join(obj['data'][key] for key in erro['keys'])} | \n")
 
     print("Relatório de erros gerado em './relatorio_erros.md'.")
 
