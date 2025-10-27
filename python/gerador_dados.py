@@ -57,13 +57,24 @@ def gerar_instrutores(quantidade: int):
 
         qtd_especialidades = fake.random_int(min=1, max=3)
 
-        for _ in range(qtd_especialidades):
+        index_especialidade = 0
+        while index_especialidade < qtd_especialidades:
             id_especialidade = buscar_id_aleatorio("especialidades")
+
             instrutor_especialidade = {
                 "id_instrutor": instrutor["id"],
                 "id_especialidade": id_especialidade
             }
+
+            values = [item for item in especialidades_instrutores
+                if item["id_instrutor"] == instrutor["id"]
+                    and item["id_especialidade"] == id_especialidade
+            ]
+            if len(values) > 0:
+                continue
+
             especialidades_instrutores.append(instrutor_especialidade)
+            index_especialidade += 1
 
     return instrutores, especialidades_instrutores
 
@@ -115,7 +126,8 @@ def gerar_aulas(curso_id: int, quantidade: int):
     else:
         aula_index = 0
 
-    for index in range(qtd_modulos):
+    index = 0
+    while index < qtd_modulos:
         
         modulo = {
             "id": modulo_index + 1,
@@ -124,29 +136,48 @@ def gerar_aulas(curso_id: int, quantidade: int):
             "id_curso": curso_id,
             "ordem": index + 1
         }
+
+        values = [item for item in modulos
+            if item["id_curso"] == modulo["id_curso"]
+                and item["ordem"] == modulo["ordem"]
+        ]
+        if len(values) > 0:
+            continue
+
         modulos.append(modulo)
         modulo_index += 1
 
-        for ordem_modulo_aula in range(quantidade // qtd_modulos):
+        ordem_modulo_aula = 0
+        while ordem_modulo_aula < quantidade // qtd_modulos:
             id_tipo = buscar_id_aleatorio("aulas_tipo")
 
-        aula = {
-            "id": aula_index + 1,
-            "titulo": fake.sentence(nb_words=6),
-            "duracao": fake.random_int(min=30, max=120), # duracao em minutos
-            "ordem": ordem_modulo_aula + 1,
-            "id_modulo": modulo["id"],
-            "id_tipo": id_tipo,
-            "data_cadastro": fake.date_time_between_dates(
-                datetime_start=date(2023, 1, 1),
-                datetime_end=date(2025, 10, 15),
-                tzinfo=None
-            ).strftime("%Y-%m-%dT%H:%M:%S"),
-        }
-        aula_index += 1
+            aula = {
+                "id": aula_index + 1,
+                "titulo": fake.sentence(nb_words=6),
+                "duracao": fake.random_int(min=30, max=120), # duracao em minutos
+                "ordem": ordem_modulo_aula + 1,
+                "id_modulo": modulo["id"],
+                "id_tipo": id_tipo,
+                "data_cadastro": fake.date_time_between_dates(
+                    datetime_start=date(2023, 1, 1),
+                    datetime_end=date(2025, 10, 15),
+                    tzinfo=None
+                ).strftime("%Y-%m-%dT%H:%M:%S"),
+            }
 
-        aulas.append(aula)
+            values = [item for item in aulas
+                if item["ordem"] == aula["ordem"]
+                    and item["id_modulo"] == aula["id_modulo"]
+            ]
+            if len(values) > 0:
+                continue
+
+            aulas.append(aula)
+            aula_index += 1
+            ordem_modulo_aula += 1
+
         qtd_modulos -= 1
+        index += 1
 
     return modulos, aulas
 
@@ -157,8 +188,8 @@ def gerar_matriculas(quantidade: int):
     matriculas_status = ler_arquivo_csv("matriculas_status")
     cursos = ler_arquivo_csv("cursos")
 
-
-    for index in range(quantidade):
+    index = 0
+    while index < quantidade:
         id_aluno = buscar_id_aleatorio("alunos")
         index_curso = fake.random_int(min=0, max=len(cursos)-1)
         curso = cursos[index_curso]
@@ -196,7 +227,17 @@ def gerar_matriculas(quantidade: int):
         else:
             matricula["data_conclusao"] = None
 
+        values = [item for item in matriculas
+            if item["id_aluno"] == matricula["id_aluno"]
+                and item["id_curso"] == matricula["id_curso"]
+                and item["id_status"] == matricula["id_status"]
+        ]
+        if len(values) > 0:
+            continue
+
         matriculas.append(matricula)
+        index += 1
+
     return matriculas
 
 
@@ -230,7 +271,8 @@ def gerar_avaliacoes(quantidade: int):
 def gerar_progresso_aulas(quantidade: int):
     progresso_aulas = []
 
-    for index in range(quantidade):
+    index = 0
+    while index < quantidade:
         matriculas = ler_arquivo_csv("matriculas")
         matricula = matriculas[fake.random_int(min=0, max=len(matriculas)-1)]
 
@@ -245,6 +287,14 @@ def gerar_progresso_aulas(quantidade: int):
             aulas_curso.extend(aulas_modulo)        
 
         aula_escolhida = aulas_curso[fake.random_int(min=0, max=len(aulas_curso)-1)]
+
+        values = [item for item in progresso_aulas
+            if item["id_aula"] == aula_escolhida["id"]
+                and item["id_matricula"] == matricula["id"]
+        ]
+
+        if len(values) > 0:
+            continue
 
         progresso = {
             "id": index + 1,
@@ -264,6 +314,8 @@ def gerar_progresso_aulas(quantidade: int):
             ).strftime("%Y-%m-%dT%H:%M:%S")
 
         progresso_aulas.append(progresso)
+        index += 1
+
     return progresso_aulas
 
 
