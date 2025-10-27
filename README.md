@@ -47,13 +47,9 @@ O Diagrama Entidade-Relacionamento (ER) detalhado pode ser encontrado em `docs/d
 ```
 .
 ├── data/              # Armazena os arquivos .csv gerados para carga de dados.
-├── docs/              # Contém a documentação (ex: Diagrama ER).
+├── docs/              # Contém a documentação.
 ├── python/            # Scripts Python para automação.
-│   ├── gerador_dados.py # Gera dados fictícios e salva em .csv.
-│   ├── main.py          # Orquestra a carga dos dados .csv para o banco.
-│   └── utils.py         # Funções utilitárias (ex: conexão com o BD).
 ├── sql/               # Scripts SQL.
-│   └── schema.sql       # Define a estrutura completa do banco de dados (DDL).
 ├── .env               # Arquivo de configuração de variáveis de ambiente (local).
 ├── docker-compose.yml # Define o serviço do banco de dados PostgreSQL.
 └── requirements.txt   # Lista de dependências Python.
