@@ -46,12 +46,26 @@ def valida_campos_unicos(lista, data, keys):
     for key in keys:
         values = [item[key] for item in lista if item[key] == data[key]]
 
-        if data[key] and len(values) > 0:
+        if data[key] and len(values) > 1:
             erro = {
                 "tipo": "campo_unico",
                 "key": key
             }
             erros.append(erro)
+    return erros
+
+def valida_campos_unicos_compostos(lista, data, chaves_compostas):
+    erros = []
+
+    for chaves in chaves_compostas:
+            values = [item for item in lista if all(item[chave] == data[chave] for chave in chaves)]
+            if len(values) > 1:
+                erro = {
+                    "tipo": "campo_unico_composto",
+                    "keys": chaves
+                }
+                erros.append(erro)
+
     return erros
 
 def valida_campos_chaves_estrangeiras(data, chaves_estrangeiras):
@@ -99,7 +113,7 @@ def valida_campos_emails(data, keys):
     return erros
 
 
-def valida_dado(data, obrigatorios=[], numeros=[], datas=[], emails=[], unicos=[], chaves_estrangeiras=[], datetimes=[], lista_existente=[]):
+def valida_dado(data, obrigatorios=[], numeros=[], datas=[], emails=[], unicos=[], unicos_compostos=[], chaves_estrangeiras=[], datetimes=[], lista_existente=[]):
     erros = []
 
     erros_campos_obrigatorios = valida_campos_obrigatorios(data, obrigatorios)
@@ -119,6 +133,9 @@ def valida_dado(data, obrigatorios=[], numeros=[], datas=[], emails=[], unicos=[
 
     erros_campos_unicos = valida_campos_unicos(lista_existente, data, unicos)
     erros.extend(erros_campos_unicos)
+
+    erros_campos_unicos_compostos = valida_campos_unicos_compostos(lista_existente, data, unicos_compostos)
+    erros.extend(erros_campos_unicos_compostos)
 
     erros_chaves_estrangeiras = valida_campos_chaves_estrangeiras(data, chaves_estrangeiras)
     erros.extend(erros_chaves_estrangeiras)
